@@ -5,7 +5,7 @@ services:
     image: traefik:latest
     domain: upo.one
     container_name: traefik
-    restart: alway
+    restart: always
     ports:
       - 80:80
       - 443:443
@@ -14,7 +14,7 @@ services:
       - web
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./traefik.toml:/traefik.toml
+      - ./traefik/traefik.toml:/traefik.toml
       - ./acme.json:/acme.json
       - ./.htpasswd:/shared/.htpasswd
     labels:
@@ -32,7 +32,6 @@ services:
       - "traefik.frontend.headers.STSIncludeSubdomains=true"
       - "traefik.frontend.headers.STSPreload=true"
       - "traefik.frontend.headers.frameDeny=true"
-s
 
 networks:
   web:
